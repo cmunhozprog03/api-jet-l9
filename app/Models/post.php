@@ -11,4 +11,27 @@ class Post extends Model
 
     const BORRADOR = 1;
     const PUBLICADO = 2;
+
+    // one => many Inverse
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    // many => many
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    // one => hasmorph
+    public function images()
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }
