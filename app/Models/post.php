@@ -12,6 +12,7 @@ class Post extends Model
     const BORRADOR = 1;
     const PUBLICADO = 2;
 
+    protected $fillable = ['name', 'slug', 'extract', 'body', 'status'];
     // one => many Inverse
     public function category()
     {
