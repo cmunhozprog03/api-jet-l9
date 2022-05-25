@@ -247,6 +247,12 @@ return [
             'can'  => 'manage-blog',
         ],
         [
+            'text'        => 'Categorias',
+            'route'         => 'admin.categories.index',
+            'icon'        => 'far fa-fw fa-file',
+            
+        ],
+        [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',

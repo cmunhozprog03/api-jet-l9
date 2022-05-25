@@ -1,6 +1,8 @@
 <?php
 
+
 use App\Http\Controllers\Api\{
+    CategoryController,
     RegisterController
 };
 use Illuminate\Http\Request;
@@ -22,3 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/register', [RegisterController::class, 'store']);
+
+Route::apiResource('/categories', CategoryController::class)->names('api.v1.categories');

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
-use App\Models\category;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
@@ -15,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return Category::all();
     }
 
     /**
@@ -26,7 +27,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $request->validate([
+            'name' => 'required|min:3|max:250',
+            'slug' => 'required|min:3|max:250|unique:categories'
+        ]);
+
+        $data = $request->all();
+       
+        
+        $category = Category::create($request->all());
+
+        return $category;
+
     }
 
     /**
@@ -37,7 +50,7 @@ class CategoryController extends Controller
      */
     public function show(category $category)
     {
-        //
+        return $category;
     }
 
     /**
