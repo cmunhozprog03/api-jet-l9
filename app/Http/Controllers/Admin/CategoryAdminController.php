@@ -63,12 +63,17 @@ class CategoryAdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\category  $category
+     * @param  \App\Models\category  $url
      * @return \Illuminate\Http\Response
      */
-    public function edit(category $category)
+    public function edit($slug)
     {
-        //
+        $category = Category::where('slug', $slug)->first();
+        
+        if(!$category)
+            return redirect()->back();
+
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -78,9 +83,16 @@ class CategoryAdminController extends Controller
      * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, category $category)
+    public function update(Request $request, $slug)
     {
-        //
+        $category = Category::where('slug', $slug)->first();
+
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name);
+
+        $category->update($data);
+
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -91,6 +103,8 @@ class CategoryAdminController extends Controller
      */
     public function destroy(category $category)
     {
-        //
+        $category->delete();
+
+        return redirect()->route('admin.categories.index');
     }
 }

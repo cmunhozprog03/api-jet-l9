@@ -15,18 +15,31 @@
       <table class="table table-striped table-bordered table-hover">
         <thead>
           <tr>
+            <th>ID</th>
             <th>Nome</th>
-            <th></th>
-            <th></th>
+            <th width="200"></th>
           </tr>
         </thead>
         <tbody>
           
             @forelse ($categories as $category)
               <tr>
+                <td>{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
-                <td></td>
-                <td></td>
+                
+                <td>
+                  <div class="row justify-content-center">
+                    <a href="{{ route('admin.categories.edit', $category) }}"
+                      class="btn btn-info btn-flat btn-sm">EDITAR</a>
+                    
+                    <form action="{{ route('admin.categories.destroy', $category) }}" method="post">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-danger btn-flat btn-sm ml-2">EXCLUIR</button>
+                    </form>  
+                  </div>
+                 
+                </td>
               </tr>
             @empty
                 <div class="alert alert-secoundary">
