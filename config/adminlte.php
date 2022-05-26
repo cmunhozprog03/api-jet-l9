@@ -253,6 +253,12 @@ return [
             
         ],
         [
+            'text'        => 'Etiquetas',
+            'route'         => 'admin.tags.index',
+            'icon'        => 'far fa-fw fa-file',
+            
+        ],
+        [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',

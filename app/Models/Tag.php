@@ -11,6 +11,11 @@ class Tag extends Model
 
     protected $fillable = ['name', 'slug'];
 
+    // public function getRouteKeyName()
+    // {
+    //     return 'slug';
+    // }
+
     // many => many
     public function posts()
     {
